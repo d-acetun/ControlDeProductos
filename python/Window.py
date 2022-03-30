@@ -1,8 +1,6 @@
 # import tkinter as tk
 from tkinter import ttk
 from tkinter import *
-from turtle import bgcolor, st
-
 
 class Window:
     def __init__(self, window):
@@ -37,11 +35,11 @@ class Window:
 
         Label(frameForm, text='Price', font=font).grid(row=1, column=0)
 
-        Label(frameForm, text='Quantity', font=font).grid(row=2, column=0)
+        Label(frameForm, text='Quantity', font=font).grid(row=2, column=0 , padx=10)
 
-        self.entryName = Entry(frameForm, width=30, font=font).grid(row=0, column=1, pady=10)
-        self.entryPrice = Entry(frameForm, width=30, font=font).grid(row=1, column=1)
-        self.entryQuantity = Entry(frameForm, width=30, font=font).grid(row=2, column=1, pady=10)
+        self.entryName = Entry(frameForm, width=30, font=font).grid(row=0, column=1, pady=10, padx=10)
+        self.entryPrice = Entry(frameForm, width=30, font=font).grid(row=1, column=1, padx=10)
+        self.entryQuantity = Entry(frameForm, width=30, font=font).grid(row=2, column=1, pady=10, padx=10)
         
         #* EW PARA EXTENDER HORIZONTALMENTE
         #* NS PARA EXTENDER VERTICALMENTE
@@ -64,12 +62,17 @@ class Window:
         Button(frameButtons, text="Delete Product", bg="red", fg=fgButton, font=fontButton).grid(row=0, column=1, sticky="we")
         
         # Se crea la tabla
-        self.threeViews = ttk.Treeview(self.window, height=30, columns=('Name', 'Price', 'Quantity'))
+        fontHeading = ('Arial', '10', 'bold')
+        style = ttk.Style() 
+        style.configure('TTreeview', font=("Cambria", 18))
+        
+        self.threeViews = ttk.Treeview(self.window, height=29, columns=('Name', 'Price', 'Quantity'))
         #Establecemos el tamaño de las columnas y centramos la tabla
         self.threeViews.column('#0', width=80, anchor=CENTER)
         self.threeViews.column('Name', width=80, anchor=CENTER)
         self.threeViews.column('Price', width=80, anchor=CENTER)
         self.threeViews.column('Quantity', width=80, anchor=CENTER)
+
 
         #Se establece el encabezado de la tabla
         self.threeViews.heading('#0', text='Id', anchor=CENTER)
@@ -79,9 +82,8 @@ class Window:
         for x in range(50):
             self.threeViews.insert('', END, text=str(x), values=('Product 1', '$100', '10'))
 
-        self.threeViews.grid(row=1, column=0, sticky="n")
+        self.threeViews.grid(row=1, column=0, sticky="n", pady=10)
 
-        # Label(self.window, text='Products', font=font).grid(row=1, column=0)
 
     def add_product(self):
         pass
