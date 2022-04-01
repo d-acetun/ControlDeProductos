@@ -41,17 +41,24 @@ class DataBase:
         except Exception as e:
             raise
 
-    def actualizarDato(self, id, nuevoNombre):
-        sql = f"UPDATE registro set nombre='{nuevoNombre}' WHERE id={id}"
+    def updateProduct(self, id, newName, newPrice, newQuantity):
+        sql = f"UPDATE productos set nombre='{newName}', precio={newPrice}, cantidad={newQuantity} WHERE id={id}"
 
         try:
             self.cursor.execute(sql)
             self.conection.commit()
-            print('Se actualizo el dato con el id', id)
+            # print('Se actualizo el dato con el id', id)
         except Exception as e:
             raise
 
-
+    def deleteProduct(self, id):
+        sql = f"DELETE FROM productos WHERE id={id}"
+        try:
+            self.cursor.execute(sql)
+            self.conection.commit()
+            # print('Se elimino el producto con el id', id)
+        except Exception as e:
+            raise
     def closeConnection(self):
         print('conexion cerrada')
         self.conection.close()
